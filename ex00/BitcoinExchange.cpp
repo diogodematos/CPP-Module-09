@@ -6,7 +6,7 @@
 /*   By: dcarrilh <dcarrilh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 14:26:56 by dcarrilh          #+#    #+#             */
-/*   Updated: 2024/09/19 17:11:59 by dcarrilh         ###   ########.fr       */
+/*   Updated: 2024/09/23 17:03:40 by dcarrilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,15 @@
 
 BitcoinExchange::BitcoinExchange(std::string input)
 {
-    SaveDate();
-    (void)input;
+    try
+    {
+        SaveData();
+        ValidInput(input);
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
 }
 
 BitcoinExchange::BitcoinExchange(const BitcoinExchange &copy)
@@ -31,11 +38,11 @@ BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &bitcoin)
 
 BitcoinExchange::~BitcoinExchange(){}
 
-void BitcoinExchange::SaveDate()
+void BitcoinExchange::SaveData()
 {
     std::ifstream inFile("data.csv");
     if(!inFile.is_open())
-        throw "Error: Unable to open data file";
+        std::cerr << "Error: Unable to open data file" << std::endl;//throw "Error: Unable to open data file";
     std::string line;
     while(std::getline (inFile, line))
     {
@@ -51,16 +58,98 @@ void BitcoinExchange::SaveDate()
     //std::cout << _btcdate["2009-01-29"] << std::endl;
 }
 
-// void BitcoinExchange::Value(char *text)
-// {
-//     try
-//     {
-//         BitcoinExchange::SaveDate();
-//         std::cout << _btcdate["2009-01-29"] << std::endl;
-//     }
-//     catch(const std::exception& e)
-//     {
-//         std::cerr << e.what() << '\n';
-//     }
-    
-// }
+void BitcoinExchange::ValidInput(std::string input)
+{
+    std::ifstream inFile(input.c_str());
+    if(!inFile.is_open())
+        std::cerr << "Error: Unable to open data file" << std::endl;
+    std::string line;
+    if (!std::getline(inFile, line))
+		return ;
+    if (line != "date | value")
+    {
+        std::cerr << "Error: Wrong input" << std::endl;
+        return ;
+    }
+    while(std::getline (inFile, line))
+    {
+        std::cout << "Ufj" << std::endl;
+        ValidLine(line);
+          
+    }
+}
+
+void BitcoinExchange::ValidLine(std::string line)
+{
+    if (line.size() < 14) // min length = 14
+    {
+        std::cerr <<  "Error: bad input => " << line << std::endl; 
+        return ;
+    }
+    int pipe = 0;
+    int sub = 0;
+    for (unsigned int i = 0; i < line.size(); i++)
+    {    
+        if (line[i] == '|')
+            pipe++;
+        if (line[i] == '-')
+            sub++;
+    }
+    if (line[10] != 32 || line[11] != '|' || line[12] != 32 || pipe != 1)// || sub != 2) // yyyy-mm-dd | 
+            std::cerr <<  "Error: bad input => " << line << std::endl;
+    std::string date = line.substr(0, 10);
+    std::string value = line.substr(13);
+    if (!ValidDate(date))
+        std::cerr <<  "Error: bad input => " << line << std::endl;
+    else
+        for(unsigned int i = 0; i < value.size(); i++)
+        {    
+            if (!isdigit(value[i]))
+                std::cerr <<  "Error: bad input => " << line << std::endl;
+        }
+        double val;
+        val = std::strtod(value.c_str(), NULL);
+        if (val < 0)
+            std::cerr << "Error: not a positive number." << std::endl;
+        else if (val > 1000)
+            std::cerr << "Error: too large a number." << std::endl;
+        else
+        {
+            std::map<std::string, double>::iterator it = _btcdate.find(date);
+            if (it != _btcdate.end())
+            {
+                std::cout << date << " => " << value << " = " << val*it->second << std::endl;
+                return ;
+            }
+            it = _btcdate.lower_bound(date);
+            --it;
+            std::cout << date << " => " << value << " = " << val*it->second << std::endl;
+        }
+;
+}
+
+bool LeapYear(int year)
+{
+    return (year %4 == 0 && year % 100 != 0) || (year % 400 == 0);
+}
+
+bool BitcoinExchange::ValidDate(std::string date)
+{
+    if (date[4] != '-' && date[7] != '-')
+        return false;
+    int year, month, day;
+    char y, m;
+    std::istringstream iss(date);
+    if (!(iss >> year >> y >> month >> m >> day))
+        return false;
+    if (year < 2009 || (year == 2009 && month == 1 && day == 1))
+        return false;
+    if (month < 1 || month > 12)
+        return false;
+    int daysMonth[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    if (month == 2 && LeapYear(year))
+        daysMonth[1] = 29;
+    if (day < 1 || day > daysMonth[month - 1])
+        return false;
+    return true;
+}

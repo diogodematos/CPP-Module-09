@@ -6,7 +6,7 @@
 /*   By: dcarrilh <dcarrilh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 16:02:38 by dcarrilh          #+#    #+#             */
-/*   Updated: 2024/09/19 16:00:09 by dcarrilh         ###   ########.fr       */
+/*   Updated: 2024/09/23 16:46:51 by dcarrilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@
 #include <map>
 #include <string>
 #include <sstream>
+#include <string.h>
+#include <cctype>
+#include <cstring>
 
 class BitcoinExchange
 {
@@ -36,8 +39,10 @@ class BitcoinExchange
         BitcoinExchange &operator=(const BitcoinExchange &bitcoin);
         ~BitcoinExchange();
 
-        void Value(char *text);
-        void SaveDate();
+        void ValidInput(std::string text);
+        void SaveData();
+        void ValidLine(std::string line);
+        bool ValidDate(std::string date);
     
 
 };
