@@ -6,7 +6,7 @@
 /*   By: dcarrilh <dcarrilh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 16:06:40 by dcarrilh          #+#    #+#             */
-/*   Updated: 2024/09/24 18:25:47 by dcarrilh         ###   ########.fr       */
+/*   Updated: 2024/09/24 22:19:13 by dcarrilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,10 @@ PmergeMe::PmergeMe(){}
 PmergeMe::PmergeMe(std::vector<int> vec) : _array(vec)
 {
     MergeSort(_array);
-    std::cout << "\n\n\nSort array" << std::endl;
+    std::cout << "After: " << std::endl;
     for(unsigned int i = 0; i < _array.size(); i++)
-        std::cout << _array[i] << std::endl;
+        std::cout << _array[i] << " ";
+    std::cout << std::endl;
 
 }
 

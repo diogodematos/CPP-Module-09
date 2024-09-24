@@ -6,7 +6,7 @@
 /*   By: dcarrilh <dcarrilh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 15:07:12 by dcarrilh          #+#    #+#             */
-/*   Updated: 2024/09/24 18:22:30 by dcarrilh         ###   ########.fr       */
+/*   Updated: 2024/09/24 22:36:30 by dcarrilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 #include <string>
 #include <algorithm>
 #include <vector>
+#include <deque>
+#include <ctime>
 
 class PmergeMe
 {
