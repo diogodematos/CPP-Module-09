@@ -6,7 +6,7 @@
 /*   By: dcarrilh <dcarrilh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 16:02:38 by dcarrilh          #+#    #+#             */
-/*   Updated: 2024/09/23 16:46:51 by dcarrilh         ###   ########.fr       */
+/*   Updated: 2024/09/23 18:27:15 by dcarrilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,11 @@ class BitcoinExchange
         void SaveData();
         void ValidLine(std::string line);
         bool ValidDate(std::string date);
-    
+        
+        class WrongFile : public std::exception {
+             public:
+                virtual const char* what() const throw();
+        };
 
 };
 
