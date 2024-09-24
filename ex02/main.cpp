@@ -6,7 +6,7 @@
 /*   By: dcarrilh <dcarrilh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 15:35:14 by dcarrilh          #+#    #+#             */
-/*   Updated: 2024/09/24 22:35:10 by dcarrilh         ###   ########.fr       */
+/*   Updated: 2024/09/24 23:07:36 by dcarrilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,24 @@ int main(int argc, char **argv)
     // Exibe o tempo usado pelo std::vector
         std::cout << "Time to process a range of " << vec.size() << " elements with std::vector: " << duration_vector << " us" << std::endl;
 
-    
+    // Se você tiver outro container, como std::deque, faça o mesmo processo.
+    std::deque<int> deq(vec.begin(), vec.end()); // Caso você tenha um segundo container
+
+    // Captura o tempo inicial para o segundo container (std::deque)
+    std::clock_t start_deque = std::clock();
+
+    // Ordenando usando std::deque (supondo que você tenha uma versão que aceita std::deque)
+    PmergeMe Jhonson(deq);  // Você pode precisar adaptar seu código para aceitar std::deque.
+
+    // Captura o tempo final para o segundo container (std::deque)
+    std::clock_t end_deque = std::clock();
+
+    // Calcula o tempo total para o segundo container em microssegundos
+    double duration_deque = 1000000.0 * (end_deque - start_deque) / CLOCKS_PER_SEC;
+
+    // Exibe o tempo usado pelo std::deque
+    std::cout << "Time to process a range of " << deq.size() << " elements with std::deque: " << duration_deque << " us" << std::endl;
+
     
         
     }
