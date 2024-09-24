@@ -6,7 +6,7 @@
 /*   By: dcarrilh <dcarrilh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 16:02:38 by dcarrilh          #+#    #+#             */
-/*   Updated: 2024/09/23 18:27:15 by dcarrilh         ###   ########.fr       */
+/*   Updated: 2024/09/24 11:03:36 by dcarrilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ class BitcoinExchange
     
     public:
     
+        BitcoinExchange();
         BitcoinExchange(std::string input);
         BitcoinExchange(const BitcoinExchange &copy);
         BitcoinExchange &operator=(const BitcoinExchange &bitcoin);

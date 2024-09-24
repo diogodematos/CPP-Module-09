@@ -6,11 +6,13 @@
 /*   By: dcarrilh <dcarrilh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 14:26:56 by dcarrilh          #+#    #+#             */
-/*   Updated: 2024/09/24 10:11:56 by dcarrilh         ###   ########.fr       */
+/*   Updated: 2024/09/24 11:04:27 by dcarrilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
+
+BitcoinExchange::BitcoinExchange(){}
 
 BitcoinExchange::BitcoinExchange(std::string input)
 {
