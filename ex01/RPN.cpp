@@ -6,7 +6,7 @@
 /*   By: dcarrilh <dcarrilh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 11:04:56 by dcarrilh          #+#    #+#             */
-/*   Updated: 2024/09/24 14:52:06 by dcarrilh         ###   ########.fr       */
+/*   Updated: 2024/09/25 14:34:51 by dcarrilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,15 @@ RPN::~RPN(){}
 
 void RPN::ValidInput(std::string input)
 {
+    if (input.size() == 0)
+        throw WrongInput();
     for(unsigned int i = 0; i < input.size(); i++)
     {
-        while (i == 48)
+        while (i == 32)
             i++;
-        if(input[i] >= 48 && input[i] <= 57 && input[i+1] != 32)
+        if(input[i] >= 48 && input[i] <= 57 && input[i+1] != 32 && i < input.size() -1)
         throw WrongInput();
-        if ((input[i] == 42 || input[i] == 43 || input[i] == 45 || input[i] == 47) && input[i + 1] != 32)
+        if ((input[i] == 42 || input[i] == 43 || input[i] == 45 || input[i] == 47) && input[i + 1] != 32 && i < input.size() -1)
         throw WrongInput();
     }
     input.erase(remove(input.begin(), input.end(), ' '), input.end());
@@ -91,6 +93,8 @@ int RPN::Operation()
             r = t2 * t;
             break;
         case '/': 
+            if (t == 0)
+                throw WrongInput();
             r = t2 / t;
             break;
     }

@@ -6,7 +6,7 @@
 /*   By: dcarrilh <dcarrilh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 14:26:56 by dcarrilh          #+#    #+#             */
-/*   Updated: 2024/09/24 11:04:27 by dcarrilh         ###   ########.fr       */
+/*   Updated: 2024/09/25 14:29:06 by dcarrilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ void BitcoinExchange::ValidLine(std::string line)
         while(i < value.size())
         {   if (value[i] == '.')
                 point++;
-            if (!isdigit(value[i]) || point > 1)
+            if ((!isdigit(value[i]) && value[i] != 46) || point > 1)
             {
                 std::cerr <<  "Error: bad input => " << line << std::endl;
                 return ;
