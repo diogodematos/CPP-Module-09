@@ -6,7 +6,7 @@
 /*   By: dcarrilh <dcarrilh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 15:35:14 by dcarrilh          #+#    #+#             */
-/*   Updated: 2024/09/25 11:53:18 by dcarrilh         ###   ########.fr       */
+/*   Updated: 2024/09/25 11:57:50 by dcarrilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,28 +40,28 @@ int main(int argc, char **argv)
         }
         std::cout << std::endl;
         
-        std::clock_t start_vector = std::clock();
+        //std::clock_t start_vector = std::clock();
     
         PmergeMe Ford(vec);
 
-        std::clock_t end_vector = std::clock();
+        // std::clock_t end_vector = std::clock();
 
-        double duration_vector = 1000000.0 * (end_vector - start_vector) / CLOCKS_PER_SEC;
+        // double duration_vector = 1000000.0 * (end_vector - start_vector) / CLOCKS_PER_SEC;
 
-        std::cout << "Time to process a range of " << vec.size() << " elements with std::vector: " << duration_vector << " us" << std::endl;
+        // std::cout << "Time to process a range of " << vec.size() << " elements with std::vector: " << duration_vector << " us" << std::endl;
 
         std::deque<int> deq(vec.begin(), vec.end());
 
-        std::clock_t start_deque = std::clock();
+        // std::clock_t start_deque = std::clock();
 
         PmergeMe Jhonson(deq);
 
         
-        std::clock_t end_deque = std::clock();
+        // std::clock_t end_deque = std::clock();
 
-        double duration_deque = 1000000.0 * (end_deque - start_deque) / CLOCKS_PER_SEC;
+        // double duration_deque = 1000000.0 * (end_deque - start_deque) / CLOCKS_PER_SEC;
 
-        std::cout << "Time to process a range of " << deq.size() << " elements with std::deque: " << duration_deque << " us" << std::endl;
+        // std::cout << "Time to process a range of " << deq.size() << " elements with std::deque: " << duration_deque << " us" << std::endl;
 
     
         

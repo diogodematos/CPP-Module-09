@@ -6,7 +6,7 @@
 /*   By: dcarrilh <dcarrilh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 16:06:40 by dcarrilh          #+#    #+#             */
-/*   Updated: 2024/09/25 11:42:15 by dcarrilh         ###   ########.fr       */
+/*   Updated: 2024/09/25 11:58:50 by dcarrilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,30 @@ PmergeMe::PmergeMe(){}
 
 PmergeMe::PmergeMe(std::vector<int> vec) : _array(vec)
 {
+    std::clock_t start_vector = std::clock();
     MergeSort(_array);
-    std::cout << "(Vector)After: " << std::endl;
+    std::clock_t end_vector = std::clock();
+    double duration_vector = 1000000.0 * (end_vector - start_vector) / CLOCKS_PER_SEC;
+    std::cout << "After: " << std::endl;
     for(unsigned int i = 0; i < _array.size(); i++)
         std::cout << _array[i] << " ";
     std::cout << std::endl;
+    std::cout << "Time to process a range of " << vec.size() << " elements with std::vector: " << duration_vector << " us" << std::endl;
+
 
 }
 
 PmergeMe::PmergeMe(std::deque<int> deq) : _darray(deq)
 {
+    std::clock_t start_deque = std::clock();
     MergeSortDeque(_darray);
+    std::clock_t end_deque = std::clock();
+    double duration_deque = 1000000.0 * (end_deque - start_deque) / CLOCKS_PER_SEC;
     // std::cout << "(Deque)After: " << std::endl;
     // for(unsigned int i = 0; i < _darray.size(); i++)
     //     std::cout << _darray[i] << " ";
     // std::cout << std::endl;
-
+    std::cout << "Time to process a range of " << deq.size() << " elements with std::deque: " << duration_deque << " us" << std::endl;
 }
 
 PmergeMe::PmergeMe(const PmergeMe &copy) : _array(copy._array){}
