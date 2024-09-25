@@ -6,7 +6,7 @@
 /*   By: dcarrilh <dcarrilh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 16:06:40 by dcarrilh          #+#    #+#             */
-/*   Updated: 2024/09/24 23:09:22 by dcarrilh         ###   ########.fr       */
+/*   Updated: 2024/09/25 11:42:15 by dcarrilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ PmergeMe::PmergeMe(){}
 PmergeMe::PmergeMe(std::vector<int> vec) : _array(vec)
 {
     MergeSort(_array);
-    std::cout << "After: " << std::endl;
+    std::cout << "(Vector)After: " << std::endl;
     for(unsigned int i = 0; i < _array.size(); i++)
         std::cout << _array[i] << " ";
     std::cout << std::endl;
@@ -27,10 +27,10 @@ PmergeMe::PmergeMe(std::vector<int> vec) : _array(vec)
 PmergeMe::PmergeMe(std::deque<int> deq) : _darray(deq)
 {
     MergeSortDeque(_darray);
-    std::cout << "After: " << std::endl;
-    for(unsigned int i = 0; i < _darray.size(); i++)
-        std::cout << _darray[i] << " ";
-    std::cout << std::endl;
+    // std::cout << "(Deque)After: " << std::endl;
+    // for(unsigned int i = 0; i < _darray.size(); i++)
+    //     std::cout << _darray[i] << " ";
+    // std::cout << std::endl;
 
 }
 
