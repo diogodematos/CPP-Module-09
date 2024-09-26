@@ -6,7 +6,7 @@
 /*   By: dcarrilh <dcarrilh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 11:04:56 by dcarrilh          #+#    #+#             */
-/*   Updated: 2024/09/25 14:34:51 by dcarrilh         ###   ########.fr       */
+/*   Updated: 2024/09/26 17:38:53 by dcarrilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ void RPN::ValidInput(std::string input)
         if (_numbers.size() >= 2 && _signal.size() >= 1)
             _numbers.push(Operation());
     }
+    if ((_numbers.size() != 1 || _signal.size() != 0))
+            throw WrongInput();
     std::cout << _numbers.top() << std::endl;
 }
 
